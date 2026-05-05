@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remember, Anant</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="screen" id="today-screen">
+      <header class="top-bar">
+        <p class="app-name">Remember, Anant</p>
+        <p class="date" id="today-date">MONDAY · MAY 4</p>
+      </header>
+
+      <main class="thought-area">
+        <p class="thought" id="today-thought">Loading your thought…</p>
+      </main>
+
+      <footer class="actions">
+        <button class="btn-primary">All thoughts →</button>
+        <a class="btn-secondary" href="#">Add a new one</a>
+      </footer>
+    </div>
+<div class="screen" id="all-screen">
+      <header class="top-bar">
+        <button class="btn-back" id="btn-back-from-all">← Back</button>
+        <p class="app-name">All thoughts</p>
+      </header>
+
+      <main class="thoughts-list" id="thoughts-list">
+        <!-- thoughts will be inserted here by JS -->
+      </main>
+    </div>
+<div class="screen" id="add-screen">
+      <header class="top-bar">
+        <button class="btn-back" id="btn-back-from-add">← Back</button>
+        <p class="app-name">Add a thought</p>
+      </header>
+
+      <main class="add-area">
+        <textarea 
+          id="new-thought-input" 
+          class="thought-input" 
+          placeholder="Type your thought here…"
+          maxlength="300"
+        ></textarea>
+        <p class="char-count" id="char-count">0 / 300</p>
+      </main>
+
+      <footer class="actions">
+        <button class="btn-primary" id="btn-save-thought">Save thought</button>
+        <a class="btn-secondary" id="btn-cancel-add" href="#">Cancel</a>
+      </footer>
+    </div>
+    
+    <script src="app.js"></script>
+  </body>
+</html>
