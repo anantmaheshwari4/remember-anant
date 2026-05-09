@@ -234,7 +234,7 @@ function scheduleNotification() {
 
       setTimeout(function() {
         reg.showNotification('Remember, Anant', {
-          body: THOUGHTS[todayEntry.index],
+          body: 'Your thought for today is waiting. →',
           icon: '/icon-192.png',
           badge: '/icon-192.png',
           tag: 'daily-thought',
