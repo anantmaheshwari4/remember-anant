@@ -206,3 +206,46 @@ function openEditScreen(index) {
   document.getElementById('btn-save-thought').textContent = 'Save changes';
   showScreen('add-screen');
 }
+// ── NOTIFICATIONS ──────────────────────────────────────────────────────────
+
+function requestNotificationPermission() {
+  if ('Notification' in window) {
+    Notification.requestPermission().then(function(permission) {
+      if (permission === 'granted') {
+        scheduleNotification();
+      }
+    });
+  }
+}
+
+function scheduleNotification() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then(function(reg) {
+      const now = new Date();
+      const next10am = new Date();
+      next10am.setHours(10, 0, 0, 0);
+
+      // If 10am already passed today, schedule for tomorrow
+      if (now >= next10am) {
+        next10am.setDate(next10am.getDate() + 1);
+      }
+
+      const delay = next10am.getTime() - now.getTime();
+
+      setTimeout(function() {
+        reg.showNotification('Remember, Anant', {
+          body: THOUGHTS[todayEntry.index],
+          icon: '/icon-192.png',
+          badge: '/icon-192.png',
+          tag: 'daily-thought',
+          renotify: true,
+        });
+        // Schedule again for next day
+        scheduleNotification();
+      }, delay);
+    });
+  }
+}
+
+// Request permission on load
+requestNotificationPermission();

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'remember-anant-v1';
+const CACHE_NAME = 'remember-anant-v2';
 const ASSETS = [
   '/',
   '/index.html',
@@ -16,6 +16,7 @@ self.addEventListener('install', function(e) {
       return cache.addAll(ASSETS);
     })
   );
+  self.skipWaiting();
 });
 
 // Activate — clean up old caches
@@ -27,6 +28,7 @@ self.addEventListener('activate', function(e) {
       );
     })
   );
+  self.clients.claim();
 });
 
 // Fetch — serve from cache, fall back to network
@@ -35,5 +37,13 @@ self.addEventListener('fetch', function(e) {
     caches.match(e.request).then(function(response) {
       return response || fetch(e.request);
     })
+  );
+});
+
+// Show notification
+self.addEventListener('notificationclick', function(e) {
+  e.notification.close();
+  e.waitUntil(
+    clients.openWindow('/')
   );
 });
