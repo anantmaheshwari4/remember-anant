@@ -235,3 +235,12 @@ body {
 .thought-action-btn.delete:hover {
   color: rgba(255, 100, 100, 0.8);
 }
+
+/* === HISTORY SCREEN === */
+.history-date {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: rgba(245, 237, 224, 0.4);
+  margin-bottom: 6px;
+  font-family: 'Inter', sans-serif;
+}

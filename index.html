@@ -53,12 +53,22 @@
         <p class="char-count" id="char-count">0 / 300</p>
       </main>
 
-      <footer class="actions">
-        <button class="btn-primary" id="btn-save-thought">Save thought</button>
-        <a class="btn-secondary" id="btn-cancel-add" href="#">Cancel</a>
+<footer class="actions">
+        <button class="btn-primary" id="btn-all-thoughts">All thoughts →</button>
+        <button class="btn-primary" id="btn-history" style="background: rgba(245,237,224,0.08); border: 1px solid rgba(245,237,224,0.15);">History →</button>
+        <a class="btn-secondary" href="#">Add a new one</a>
       </footer>
     </div>
+<div class="screen" id="history-screen">
+      <header class="top-bar">
+        <button class="btn-back" id="btn-back-from-history">← Back</button>
+        <p class="app-name">History</p>
+      </header>
 
+      <main class="thoughts-list" id="history-list">
+        <!-- history will be inserted here by JS -->
+      </main>
+    </div>
     <script src="app.js"></script>
     <script>
       if ('serviceWorker' in navigator) {

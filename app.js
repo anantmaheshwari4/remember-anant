@@ -110,8 +110,7 @@ document.getElementById('btn-back-from-all').addEventListener('click', function(
 // ── ADD THOUGHT SCREEN ─────────────────────────────────────────────────────
 
 // Open Add screen from "Add a new one" link
-document.querySelector('.btn-secondary').addEventListener('click', function(e) {
-  e.preventDefault();
+document.getElementById('btn-all-thoughts').addEventListener('click', function() {  e.preventDefault();
   document.getElementById('new-thought-input').value = '';
   document.getElementById('char-count').textContent = '0 / 300';
   document.getElementById('add-screen').dataset.editIndex = '';
@@ -249,3 +248,52 @@ function scheduleNotification() {
 
 // Request permission on load
 requestNotificationPermission();
+
+// ── HISTORY SCREEN ─────────────────────────────────────────────────────────
+
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  list.innerHTML = '';
+
+  const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+
+  if (history.length === 0) {
+    const empty = document.createElement('p');
+    empty.className = 'thought-item-text';
+    empty.style.opacity = '0.4';
+    empty.textContent = 'No history yet. Come back tomorrow.';
+    list.appendChild(empty);
+    return;
+  }
+
+  // Show most recent first
+  const reversed = history.slice().reverse();
+
+  reversed.forEach(function(entry) {
+    const item = document.createElement('div');
+    item.className = 'thought-item';
+
+    const date = document.createElement('p');
+    date.className = 'history-date';
+    date.textContent = entry.date;
+
+    const thought = document.createElement('p');
+    thought.className = 'thought-item-text';
+    thought.textContent = THOUGHTS[entry.index] || '(thought no longer exists)';
+
+    item.appendChild(date);
+    item.appendChild(thought);
+    list.appendChild(item);
+  });
+}
+
+// History button — wire up the Today screen button
+document.getElementById('btn-history').addEventListener('click', function() {
+  renderHistory();
+  showScreen('history-screen');
+});
+
+// Back button
+document.getElementById('btn-back-from-history').addEventListener('click', function() {
+  showScreen('today-screen');
+});
