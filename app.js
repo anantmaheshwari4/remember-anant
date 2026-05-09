@@ -297,3 +297,15 @@ document.getElementById('btn-history').addEventListener('click', function() {
 document.getElementById('btn-back-from-history').addEventListener('click', function() {
   showScreen('today-screen');
 });
+
+// ── ADD A NEW THOUGHT button ───────────────────────────────────────────────
+document.getElementById('btn-add-thought').addEventListener('click', function(e) {
+  e.preventDefault();
+  // Reset the add screen to "new thought" mode (not edit mode)
+  const input = document.getElementById('new-thought-input');
+  input.value = '';
+  document.getElementById('char-count').textContent = '0 / 300';
+  delete document.getElementById('add-screen').dataset.editIndex;
+  document.getElementById('btn-save-thought').textContent = 'Save thought';
+  showScreen('add-screen');
+});
